@@ -44,23 +44,18 @@ route {
 }
 EOF
 cat > client<<-EOF
-:443, ${DOMAIN}
-tls caddy@${DOMAIN} 
-route {
- forward_proxy {
-   basic_auth ${USER} ${PASSWORD} 
-   hide_ip
-   hide_via
-   probe_resistance
-  }
- reverse_proxy  https://www.aconvert.com { 
-   header_up  Host  {upstream_hostport}
-   header_up  X-Forwarded-Host  {host}
-  }
+{
+  "listen": "socks://127.0.0.1:1080",
+  "proxy": "https://$USER:$PASSWORD@$DOMAIN"
 }
 EOF
     wget -N https://github.com/hiandy22/caddy/releases/download/ubuntu/caddy && chmod 777 caddy
-    ./caddy run
+    ./caddy start
+    echo "------------"
+    cat client
+    echo " "
+    echo " "
+
 }
 
 menu(){
@@ -75,7 +70,7 @@ menu(){
   echo "作者：hiandy22 --github"
   echo " -------------"
   echo "0. 退出"
-  echo "1. 安装服务端"
+  echo "1. 安装服务端(脚本执行需要一定时间，最后的获取证书需要耐心等候)"
   echo "2. 重启服务端"
   echo "3. 停止服务端"
   echo "4. 查看服务端配置"
