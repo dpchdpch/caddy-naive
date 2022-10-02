@@ -1,0 +1,15 @@
+:443, [域名]
+tls caddy@example.com
+route {
+ forward_proxy {
+   basic_auth user pass 
+   hide_ip
+   hide_via
+   probe_resistance
+  }
+ reverse_proxy  https://www.aconvert.com { 
+   header_up  Host  {upstream_hostport}
+   header_up  X-Forwarded-Host  {host}
+  }
+}
+
