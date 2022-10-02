@@ -5,6 +5,10 @@
 使用方法(编写好Caddyfile)
 ```
 wget https://github.com/hiandy22/caddy/releases/download/ubuntu/caddy
+
+https://raw.githubusercontent.com/hiandy22/caddy/main/Naivescript.sh
+
+
 ./caddy run 
 ./caddy start
 ```
