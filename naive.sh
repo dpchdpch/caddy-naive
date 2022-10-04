@@ -49,7 +49,7 @@ cat > client<<-EOF
   "proxy": "https://$USER:$PASSWORD@$DOMAIN"
 }
 EOF
-    wget -N https://github.com/hiandy22/caddy/releases/download/ubuntu/caddy && chmod 777 caddy
+    wget -N https://github.com/hiandy22/caddy-naive/releases/download/ubuntu/caddy && chmod 777 caddy
     ./caddy start
     echo "------------"
     cat client
